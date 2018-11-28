@@ -1,0 +1,26 @@
+<header class="header">
+	<input class="new-todo" placeholder="What needs to be done?" autofocus (keydown.enter)="addTodo($event)">
+</header>
+<section class="main">
+	<input id="toggle-all" class="toggle-all" type="checkbox" (input)="selectAll($event)">
+	<label for="toggle-all">Mark all as complete</label>
+	<ul class="todo-list">
+
+		<todo *ngFor="let todo of todoLists" [todo]="todo" (todoChanges)="updateChanges($event)"></todo>
+
+
+	</ul>
+</section>
+<footer class="footer">
+		<span class="todo-count">
+			{{checkTaskLength()}} items left
+		</span>
+	<ul class="filters">
+		<li *ngFor="let btn of buttons; index as i; first as isFirst">
+			<a href="#" [class.selected]="selection === btn" (click)="changeSelection($event, btn)">
+				{{btn}}
+			</a>
+		</li>
+	</ul>
+	<button class="clear-completed" (click)="clearComplete()">Clear completed</button>
+</footer>

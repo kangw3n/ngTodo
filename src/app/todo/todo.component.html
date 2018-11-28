@@ -1,0 +1,8 @@
+<li [ngClass]="{'completed' : todo.state, 'editing': todo.editing}" [hidden]="todo.hiddenState">
+	<div class="view">
+		<input class="toggle" type="checkbox" [checked]="todo.state" (change)="todoToggle()" >
+		<label (dblclick)="editTodo()">{{todo.task}}</label>
+		<button class="destroy" (click)="removeTodo()"></button>
+	</div>
+	<input type="text" class="edit" [value]="todo.task" (keyup.enter)="saveTodo($event)" (change)="saveTodo($event)">
+</li>
